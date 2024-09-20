@@ -10,14 +10,13 @@ import (
 
 func main() {
 	config.InitAppConfig()
-
 	config.InitDB()
 	defer config.CloseDB()
 
 	handler.InitRoutes()
 
-	port := fmt.Sprintf(":%d", config.ServerPort)
-	log.Printf("Auth service is running on port %s\n", port)
+	port := fmt.Sprintf(":%s", config.ServerPort)
+	log.Printf("Auth service is running on port %s\n", config.ServerPort)
 
 	err := http.ListenAndServe(port, nil)
 	if err != nil {

@@ -5,7 +5,6 @@ import (
 	"gopkg.in/yaml.v2"
 	"log"
 	"os/exec"
-	"strconv"
 )
 
 var JwtSecretKey []byte
@@ -20,13 +19,15 @@ type AppConfiguration struct {
 
 type DBSettings struct {
 	User     string `yaml:"user"`
+	Port     string `yaml:"port"`
+	Host     string `yaml:"host"`
 	Password string `yaml:"password"`
 	DBName   string `yaml:"dbname"`
 	SSLMode  string `yaml:"sslmode"`
 }
 
 type ServerSettings struct {
-	Port int `yaml:"port"`
+	Port string `yaml:"port"`
 }
 
 func InitAppConfig() {
@@ -43,7 +44,7 @@ func InitAppConfig() {
 
 	JwtSecretKey = []byte(config.JWTSecretKey)
 	DBConfig = config.DB
-	ServerPort = strconv.Itoa(config.Server.Port)
+	ServerPort = config.Server.Port
 }
 
 func decryptConfigFile(filePath string) ([]byte, error) {
