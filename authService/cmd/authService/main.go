@@ -13,7 +13,8 @@ func main() {
 	config.InitDB()
 	defer config.CloseDB()
 
-	handler.InitRoutes()
+	handler.InitUserRoutes()
+	handler.InitAuthRoutes()
 
 	port := fmt.Sprintf(":%s", config.ServerPort)
 	log.Printf("Auth service is running on port %s\n", config.ServerPort)
