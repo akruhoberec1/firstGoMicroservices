@@ -1,5 +1,3 @@
-// File: internal/helper/tokenUtil.go
-
 package helper
 
 import (
@@ -32,7 +30,7 @@ func ExtractUserIDFromToken(token *jwt.Token) (int, error) {
 		return 0, errors.New("invalid token claims")
 	}
 
-	userID, ok := claims["user_id"].(float64) // JWT stores numbers as float64
+	userID, ok := claims["user_id"].(float64)
 	if !ok {
 		return 0, errors.New("invalid user ID in token claims")
 	}
